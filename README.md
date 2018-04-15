@@ -1,3 +1,1 @@
-# Dev stacks
-
-My development stacks.
+# Lamp development stack
