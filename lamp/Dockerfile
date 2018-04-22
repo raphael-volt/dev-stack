@@ -1,4 +1,4 @@
-FROM rvolt/dev-stack:lamp-core
+FROM rvolt/dev-stack:lamp
 
 LABEL maintainer "Raphaël Volt <raphael@ketmie.com>"
 
