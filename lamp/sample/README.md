@@ -1,3 +1,3 @@
-# Basic LAMP stack
+# LAMP stack with mysql
 
 
