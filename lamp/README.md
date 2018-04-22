@@ -1,9 +1,6 @@
 # LAMP Development stack
 
-## Mysql/PDO
+## Tags :
 
-Tag : mysql
-
-## Mongodb
-
-Tag : mongo
+- lamp-mysql
+- lamp-mongo
