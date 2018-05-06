@@ -7,7 +7,6 @@ RUN apt-get update && apt-get install -y \
     bzip2 \
     libbz2-dev \
     libcurl4-openssl-dev \
-    libsqlite3-dev \
     libxml2-dev \
     libfreetype6-dev \
     libgd-dev \
