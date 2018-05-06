@@ -2,9 +2,10 @@
 
 Add xdebug and phpunit to the official php:7-apache image.
 
-A complet guide to configure the Eclipse PDT debugger.  
 
-Live reload PhpUnit.
+See [ECLIPSE.md](ECLIPSE.md) to configure Eclipse.  
+
+See the [sample](sample/) code for a basic lamp stack.
 
 ## Requirement
 
@@ -12,6 +13,12 @@ Live reload PhpUnit.
 - docker
 - docker-compose
 
+## Start server
+```bash
+cd sample/
+docker-compose up
+# press Ctrl+c to stop
+```
 ## Debug app
 
 - Run Eclipse debugger
@@ -20,9 +27,10 @@ Live reload PhpUnit.
 ## Debug tests
 
 - Run Eclipse debugger
-- Run PHPUnit
+- Run PHPUnit :
     - Using a bash session
         ```bash
+        # Start a bash session
         docker exec -it <CONTAINER_ID> bash 
         # Automaticly run tests on files changes
         watch-phpunit -c specs/suite.xml
@@ -37,95 +45,14 @@ Live reload PhpUnit.
         docker exec -it <CONTAINER_ID> phpunit --bootstrap specs/autoload.php specs/tests/
         ```
 
-# **Eclipse PDT** configuration
-
-## PHPUnit
-
-You don't need to install **PHPUnit** on the host machine. The **phpunit.phar** is required by **Eclipse** to add this library to the source path. Simply download the phar file and move it where you want.
-
-Download phpunit.phar:
+## Live reload PhpUnit
 
 ```bash
-wget https://phar.phpunit.de/phpunit-6.5.phar
+watch-phpunit [-c <config> | -b <bootstrap> -f <file>] [-w <dir-or-file-to-watch> default:/var/www/html]
+    # Examples
+    watch-phpunit -b autoload.php -f specs/tests/MyTest.php
+    watch-phpunit -c suite.xml
+    watch-phpunit -c suite.xml -w index.php
+    watch-phpunit -c suite.xml -w specs/tests
 ```
 
-Move it to the folder you want:
-
-```bash
-mv phpunit-6.5.phar ~/bin/phpunit/phpunit-6.5.phar
-```
-
-Add the **PHPUnit Phar** path:
-
-> Window > PHP > Tools > PHPUnit
-
-![alt text](doc/img/phpunit.png)
-
-## Eclipse debugger
-
-> Window > Preferences > PHP > Debug > Debuggers 
-
-![alt text](doc/img/conf.debuggers.png)
-
-Select XDebug and configure it as follows :
-
-![alt text](doc/img/conf.xdebug.png)
-
-## Servers
-
-> Window > Preferences > PHP > Servers
-
-![alt text](doc/img/conf.servers.png)
-
-### Create your server
-
-Press New.
-
-Configure your server as follows (adapt the base URL and your document root path) and press Next.
-The port of the base URL is defined in the docker-compose.yml:
-
-```yml
-# ...
-services:
-  app:
-    # ...
-    ports:
-      - 4200:80
-    # ...
-```
-
-So the base URL is http://localhost:4200 
-
-![alt text](doc/img/conf.new-server.png)
-
-### Configure debugger
-
-Select XDebug, configure as follows and press Next.
-
-![alt text](doc/img/conf.server-debugger.png)
-
-### Configure path mapping
-
-![alt text](doc/img/server-path-mapping-tab.png)
-
-Add the following path mapping (adapt your project path) then press Finish and "Apply and Close".
-
-![alt text](doc/img/conf.server-pathmapping.png)
-
-## Debug configurations
-
-> Run > Debug Configurations...
-
-![alt text](doc/img/debug.config.png)
-
-### Create a new `PHP Web Application` configuration
-
-Configure Server tab as follows :
-
-![alt text](doc/img/debug.new-config.png)
-
-### Disable `Break at first line` option
-
-Configure Debugger tab as follows and press Apply.
-
-![alt text](doc/img/debug.disable-break-first-line.png)

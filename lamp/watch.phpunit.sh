@@ -72,7 +72,7 @@ printHelp() {
 
 Live reload PhpUnit test runner.
 
-usage: watch-phpunit [-c <config>] | [-b <bootstrap> -f <file>] [-w <dir-or-file-to-watch> default:/var/www/html]
+usage: watch-phpunit [-c <config> | -b <bootstrap> -f <file>] [-w <dir-or-file-to-watch> default:/var/www/html]
     watch-phpunit -b autoload.php -f specs/tests/MyTest.php
     watch-phpunit -c suite.xml
     watch-phpunit -c suite.xml -w index.php
