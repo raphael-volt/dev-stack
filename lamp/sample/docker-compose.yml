@@ -1,0 +1,10 @@
+version: '2'
+services:
+  app:
+    container_name: lamp-sample
+    image: rvolt/dev-stack:lamp
+    ports:
+      - 4200:80
+    volumes:
+      - ./www:/var/www/html:rw
+    restart: 'no'
